@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);li {
+  display: flex;
+}
+
+.website {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.website > div {
+  grid-column: 3/11;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+#navbar {
+  display: flex;
+  grid-column: 2/11;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar__links {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navbar__links li:not(:last-child) {
+  margin-right: 15px;
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
