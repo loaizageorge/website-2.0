@@ -2,13 +2,16 @@ import React from 'react';
 import Project from './Project';
 
 function Section(props) {
-  console.log(props.section);
+  const { section } = props;
+
   return (
     <div>
-      <h1>{props.title}</h1>
-      props.section.map(project => (
-      <Project project={project} key={project.id} />
-      ))
+      <h1>{section.title}</h1>
+      {
+        section.projects.map(project => (
+          <Project project={project} key={project.id} />
+        ))
+      }
     </div>
   );
 }

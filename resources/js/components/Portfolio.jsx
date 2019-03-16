@@ -7,40 +7,37 @@ const sections = [
   {
     title: 'Front End',
     id: 1,
-    projects: [{
-      id: 1,
-      title: 'Random Quote Machine',
-      image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
-      codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
-      github: 'https://github.com/xchendo/Random-Quote-Machine',
-    }, {
-      id: 2,
-      title: 'Random Quote Machine',
-      image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
-      codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
-      github: 'https://github.com/xchendo/Random-Quote-Machine',
-    }],
-  },
-  {
-    title: 'React',
-    id: 2,
-    projects: [],
+    projects: [
+      {
+        id: 1,
+        title: 'Random Quote Machine',
+        image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
+        codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
+        github: 'https://github.com/xchendo/Random-Quote-Machine',
+      },
+      {
+        id: 2,
+        title: 'Dungeon Crawler',
+        image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
+        codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
+        github: 'https://github.com/xchendo/Random-Quote-Machine',
+      },
+    ],
   },
 ];
 
 function Portfolio() {
   return (
-    <div className="portfolio">
+    <section className="portfolio">
       {
         sections.map(section => (
           <Section
             key={section.id}
-            title={section.title}
-            section={section.projects}
+            section={section}
           />
         ))
       }
-    </div>
+    </section>
 
   );
 }
