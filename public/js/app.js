@@ -59963,6 +59963,108 @@ function Navbar() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Portfolio.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Portfolio.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Section__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Section */ "./resources/js/components/Section.jsx");
+
+ // TODO: when backend is done, use the component did mount hook to make a request to get
+// all projects by section
+
+var sections = [{
+  title: 'Front End',
+  id: 1,
+  projects: [{
+    id: 1,
+    title: 'Random Quote Machine',
+    image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
+    codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
+    github: 'https://github.com/xchendo/Random-Quote-Machine'
+  }, {
+    id: 2,
+    title: 'Random Quote Machine',
+    image: 'www.http://georgeloaiza.com/images/gallery/quote.png',
+    codepen: 'https://codepen.io/xchendo/full/BzRRgz/',
+    github: 'https://github.com/xchendo/Random-Quote-Machine'
+  }]
+}, {
+  title: 'React',
+  id: 2,
+  projects: []
+}];
+
+function Portfolio() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "portfolio"
+  }, sections.map(function (section) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: section.id,
+      title: section.title,
+      section: section.projects
+    });
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Portfolio);
+
+/***/ }),
+
+/***/ "./resources/js/components/Project.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Project.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function Project(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Project"));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Project);
+
+/***/ }),
+
+/***/ "./resources/js/components/Section.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Section.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Project */ "./resources/js/components/Project.jsx");
+
+
+
+function Section(props) {
+  console.log(props.section);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.title), "props.section.map(project => (", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Project__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    project: project,
+    key: project.id
+  }), "))");
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Section);
+
+/***/ }),
+
 /***/ "./resources/js/components/Website.jsx":
 /*!*********************************************!*\
   !*** ./resources/js/components/Website.jsx ***!
@@ -59977,6 +60079,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Navbar */ "./resources/js/components/Navbar.jsx");
+/* harmony import */ var _Portfolio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Portfolio */ "./resources/js/components/Portfolio.jsx");
+
 
 
 
@@ -59990,7 +60094,7 @@ function Website() {
     id: "about"
   }, "Get ya about heya"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "portfolio"
-  }, "Get ya portfolio heya"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Portfolio__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "contact"
   }, "Get ya contact heya"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "footer"
