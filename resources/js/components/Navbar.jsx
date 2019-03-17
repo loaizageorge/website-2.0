@@ -2,18 +2,18 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
+    <nav>
+      <div className="logo">
         <a href="http://georgeloaiza.com">
           <i className="fas fa-user-astronaut" />
-          George Loaiza
+            George Loaiza
         </a>
       </div>
-      <div className="navbar__links">
+      <ul>
         <li>About</li>
         <li>Projects</li>
         <li>Contact</li>
-      </div>
+      </ul>
     </nav>
 
   );
