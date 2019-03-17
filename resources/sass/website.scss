@@ -7,7 +7,7 @@ li {
   grid-template-columns: repeat(12, 1fr);
 }
 
-nav, section {
+section {
   grid-column: 3 / 11;
   justify-content: center;
   text-align: center;
