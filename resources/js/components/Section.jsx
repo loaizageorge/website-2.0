@@ -6,12 +6,14 @@ function Section(props) {
 
   return (
     <div>
-      <h1>{section.title}</h1>
-      {
-        section.projects.map(project => (
-          <Project project={project} key={project.id} />
-        ))
-      }
+      <h3 className="section-title">{section.title}</h3>
+      <div className="section">
+        {
+          section.projects.map(project => (
+            <Project project={project} key={project.id} />
+          ))
+        }
+      </div>
     </div>
   );
 }

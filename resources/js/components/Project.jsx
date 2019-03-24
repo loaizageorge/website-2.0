@@ -5,9 +5,18 @@ function Project(props) {
   const { project } = props;
 
   return (
-    <div>
-      <h2>{project.title}</h2>
-    </div>
+    <section className="project">
+      <img src={project.image} alt="Test" />
+      <div className="project__overlay">
+        <h3 className="overlay-title">{project.title}</h3>
+        <div className="overlay-text">
+          <p>{project.description}</p>
+          <a className="sourceLink" href={project.githubLink}>Source Code</a>
+          <a className="demoLink" href={project.demoLink}>{project.demoText}</a>
+        </div>
+      </div>
+
+    </section>
   );
 }
 

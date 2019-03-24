@@ -1,0 +1,21 @@
+.about {
+  h2 {
+    text-align: center;
+  }
+  grid-column: 2/ 11;
+  &-container {
+    display: flex;
+  }
+  &__blurb {
+    align-self: center;
+  }
+
+  img {
+    margin: 0 auto;
+    height: auto;
+    width: 70%;
+    display: inline;
+    vertical-align: middle;
+    border-radius: 50%;
+  }
+}
