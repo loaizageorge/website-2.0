@@ -14,3 +14,49 @@ li {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+a.codepen-btn:after {
+  background-color: #03829a;
+}
+
+a.freecodecamp-btn:after {
+  background-color: #556b2f;
+}
+
+a.github-btn:after {
+  background-color: #950000;
+}
+
+a.email-btn:after {
+  background-color: #007edc;
+  color: black;
+}
+
+a.btn-default:hover,
+a.btn-default:focus {
+  background-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.email {
+  text-align: center;
+}
+
+a.btn-default:hover:after {
+  width: 100%;
+}
+
+#email-url{
+  margin-bottom: -5px;
+}
+
+#email-icon {
+  color: #007edc;
+  margin-right: 5px;
+  transition: all .2s ease-in-out;
+  font-size: 40px;
+}
+
+#email-icon:hover {
+  transform: scale(1.2);
+}

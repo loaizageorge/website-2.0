@@ -16,6 +16,7 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "axios": "^0.18",
     "babel-eslint": "^10.0.1",
     "babel-preset-react": "^6.24.1",
