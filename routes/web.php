@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\WebsiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('website');
-    //return view('welcome');
-});
+Route::get('/', 'WebsiteController@index');
+Route::get('/dashboard', 'WebsiteController@loadDashboard');
+Route::post('/api/add-section', 'WebsiteController@addSection');
+

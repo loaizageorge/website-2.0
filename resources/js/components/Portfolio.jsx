@@ -3,6 +3,7 @@ import Section from './Section';
 
 // TODO: when backend is done, use the component did mount hook to make a request to get
 // all projects by section
+/*
 const sections = [
   {
     title: 'Front End',
@@ -46,7 +47,7 @@ const sections = [
       },
     ],
   },
-];
+]; */
 
 function Portfolio() {
   return (
