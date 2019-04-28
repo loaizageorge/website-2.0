@@ -83,7 +83,7 @@ function AddProject() {
         </div>
         <div className="field">
           <label>Belongs to</label>
-          <select name="section">
+          <select name="section_id">
                 { sections.map(section => <option key={section.id} value={section.id}>{section.name}</option>) }
             </select>
         </div>

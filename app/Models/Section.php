@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     protected $table = 'sections';
+
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project');
+    }
 }

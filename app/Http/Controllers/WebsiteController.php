@@ -8,6 +8,8 @@ use DB;
 use Input;
 use App\Models\Section;
 use App\Models\Project;
+use App\Models\SectionProject;
+
 
 class WebsiteController extends Controller
 {
@@ -48,7 +50,14 @@ class WebsiteController extends Controller
         $data['order'] = (int)$data['order'];
         $project = new Project;
         $project->fill($data);
-        $project->save();
-         
+        return response()->json($project->save());
+    }
+
+    public function test()
+    {
+        // get all the projects in a section
+        $section = new Section;
+        $projects = $section::find(2)->projects;
+        
     }
 }
