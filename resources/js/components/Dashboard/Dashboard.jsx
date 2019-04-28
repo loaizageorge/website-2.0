@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Label, Input } from 'semantic-ui-react';
 
-function handleSubmit(event) {
+function handleSubmit(event, route) {
   event.preventDefault();
   const data = new FormData(event.target);
-  fetch('/api/add-section', {
+  fetch(`/api/${route}`, {
     method: 'POST',
     body: data,
   })
@@ -18,7 +18,7 @@ function Dashboard() {
   return (
     <>
     <Container>
-    <form className="ui form" onSubmit={handleSubmit}>
+    <form className="ui form" onSubmit={(event) => handleSubmit(event, 'add-section')}>
       <div className="field">
       <label>Name</label>
         <input type="text" name="name" />
@@ -44,8 +44,9 @@ function Dashboard() {
 
 function AddProject() {
   return (
-    // name, order, demo link, demo text, source link, description, image, section
-      <form className="ui form" onSubmit={handleSubmit}>
+    
+    // name, order, image, source, demo, demo_text, description
+      <form className="ui form" onSubmit={(event) => handleSubmit(event, 'add-project')}>
         <div className="field">
         <label>Name</label>
           <input type="text" name="name" />
@@ -58,7 +59,7 @@ function AddProject() {
 
         <div className="field">
         <label>Demo Link</label>
-          <input type="text" name="demo_link" />
+          <input type="text" name="demo" />
         </div>
 
         <div className="field">
@@ -68,7 +69,7 @@ function AddProject() {
 
         <div className="field">
         <label>Source Link</label>
-          <input type="text" name="source_link" />
+          <input type="text" name="source" />
         </div>
 
         <div className="field">
@@ -79,6 +80,12 @@ function AddProject() {
         <div className="field">
         <label>Image</label>
           <input type="file" name="image" />
+        </div>
+        <div className="field">
+          <label>Belongs to</label>
+          <select name="section">
+                { sections.map(section => <option key={section.id} value={section.id}>{section.name}</option>) }
+            </select>
         </div>
 
         <input type="submit" value="Submit" />

@@ -19,7 +19,6 @@
       <div id="yeet"></div>
       <script>
         const sections = {!! $sections !!};
-        console.log(sections);
         
       </script>
       <script src="{{ asset('js/app.js')}}"></script>

@@ -7,28 +7,48 @@ use App\Http\Controllers\Controller;
 use DB;
 use Input;
 use App\Models\Section;
+use App\Models\Project;
 
 class WebsiteController extends Controller
 {
     public function index() 
     {
-        $sections = Section::all();
+        $sections = $this->getSections();
         return view('website')->with('sections', json_encode($sections));
+    }
+
+    protected function getSections() 
+    {
+        $sections = Section::all();
+        return $sections;
     }
 
     public function loadDashboard() 
     {
-        return view('dashboard');
+        return view('dashboard')->with('sections', json_encode($this->getSections()));
     }
 
     public function addSection(Request $request)
     {
         $section = new Section;
-
         $section->name = $request->name;
         $section->order = $request->order;
 
         return response()->json($section->save());
-        
+    }
+
+    public function addProject(Request $request)
+    {
+        $file = $request->file('image');
+        $fileName = $file->getClientOriginalName();
+        $file->move('images/project_thumbnails', $fileName);
+
+        $data = $request->all();
+        $data['image'] = $fileName;
+        $data['order'] = (int)$data['order'];
+        $project = new Project;
+        $project->fill($data);
+        $project->save();
+         
     }
 }

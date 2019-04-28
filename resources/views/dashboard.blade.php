@@ -12,6 +12,9 @@
 
     <body>
       <div id="dashboard"></div>
+      <script>
+        const sections = {!! $sections !!};
+      </script>
       <script src="{{ asset('js/app.js')}}"></script>
     </body>
     
