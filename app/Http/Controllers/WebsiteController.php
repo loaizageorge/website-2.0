@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Input;
-use App\Section;
+use App\Models\Section;
 
 class WebsiteController extends Controller
 {
@@ -21,8 +21,14 @@ class WebsiteController extends Controller
         return view('dashboard');
     }
 
-    public function addSection()
+    public function addSection(Request $request)
     {
-        dd(Input::all());
+        $section = new Section;
+
+        $section->name = $request->name;
+        $section->order = $request->order;
+
+        return response()->json($section->save());
+        
     }
 }

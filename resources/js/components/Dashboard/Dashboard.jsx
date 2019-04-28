@@ -5,16 +5,16 @@ import { Container, Label, Input } from 'semantic-ui-react';
 function handleSubmit(event) {
   event.preventDefault();
   const data = new FormData(event.target);
-  console.log('test');
   fetch('/api/add-section', {
     method: 'POST',
     body: data,
-  });
+  })
+  .then(response => response.json())
+  .then((response) => console.log(response));
 }
 
 
 function Dashboard() {
-  console.log('test');
   return (
     <>
     <Container>

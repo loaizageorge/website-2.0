@@ -13,5 +13,4 @@ use App\Http\Controllers\WebsiteController;
 
 Route::get('/', 'WebsiteController@index');
 Route::get('/dashboard', 'WebsiteController@loadDashboard');
-Route::post('/api/add-section', 'WebsiteController@addSection');
 
