@@ -13,7 +13,6 @@ function Website() {
       <>
         <Navbar />
         <Hero />
-        <About />
         <Portfolio />
         <Contact />
 

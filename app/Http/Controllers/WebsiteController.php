@@ -15,8 +15,8 @@ class WebsiteController extends Controller
 {
     public function index() 
     {
-        $sections = $this->getSections();
-        return view('website')->with('sections', json_encode($sections));
+        $data = self::getAllSectionsWithProjects();
+        return view('website')->with('sections', json_encode($data));
     }
 
     protected function getSections() 
@@ -53,11 +53,17 @@ class WebsiteController extends Controller
         return response()->json($project->save());
     }
 
-    public function test()
+    public function getAllSectionsWithProjects()
+    {
+        return Section::with('projects')->get();
+    }
+
+    public function getProjectsInSection($section_id)
     {
         // get all the projects in a section
         $section = new Section;
-        $projects = $section::find(2)->projects;
+        $projects = $section::find($section_id)->projects;
+        return $projects;
         
     }
 }
