@@ -1,4 +1,5 @@
 import React from 'react';
+import {request} from '../utility/requests.js';
 
 function Contact() {
   return (
@@ -7,22 +8,22 @@ function Contact() {
       <div className="contact-container">
         <div id="form" className="contact-input">
           <h3>Using this form..</h3>
-          <form className="form-horizontal" action="mailer.php" method="POST">
+          <form className="form-horizontal" onSubmit={(event) => request(event, 'send-message')}>
             <input type="hidden" name="_next" value="#contact" />
 
             <div className="form-group">
               <label className="control-label" htmlFor="name">Name:</label>
-              <input type="text" className="form-control" placeholder="E.g. Johh Smith" name="name" />
+              <input type="text" className="form-control" placeholder="E.g. Johh Smith" name="name" required />
             </div>
 
             <div className="form-group">
               <label className="control-label" htmlFor="email">Email:</label>
-              <input type="email" className="form-control" placeholder="example@email.com" name="email" />
+              <input type="email" className="form-control" placeholder="example@email.com" name="email" required />
             </div>
 
             <div className="form-group">
               <label className="control-label" htmlFor="message">Message:</label>
-              <textarea className="form-control" id="message" rows="3" placeholder="Your message here" name="message" />
+              <textarea className="form-control" id="message" rows="3" placeholder="Your message here" name="message" required />
             </div>
             <div className="form-group submit-container">
               <input id="send-btn" className="btn btn-primary send-button" type="submit" value="Send" />
