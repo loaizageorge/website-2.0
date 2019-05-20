@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 Route::post('add-section', 'WebsiteController@addSection');
 Route::post('add-project', 'WebsiteController@addProject');
 Route::post('send-message', 'WebsiteController@sendMessage');
-Route::get('test', 'WebsiteController@getAllSectionsWithProjects');
+Route::get('test', 'WebsiteController@getProjects');
+Route::get('projects/{id}', 'WebsiteController@getProject');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

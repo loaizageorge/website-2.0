@@ -1,10 +1,9 @@
-export const request = (event, route) => {
+export const request = (event, route, method='POST') => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    fetch(`/api/${route}`, {
-        method: 'POST',
-        body: data,
-    })
-    .then(response => response.json())
-    .then((response) => console.log(response));
+    let request = {method: method};
+    if (method === 'POST') {
+      request.body = new FormData(event.target);
+    }
+    fetch(`/api/${route}`,request)
+    .then(response => response.json());
 };

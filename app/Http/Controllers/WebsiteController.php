@@ -25,9 +25,17 @@ class WebsiteController extends Controller
         return $sections;
     }
 
+    protected function getProjects()
+    {
+        return Project::orderBy('name')->get(); 
+    }
+
     public function loadDashboard() 
     {
-        return view('dashboard')->with('sections', json_encode($this->getSections()));
+        return view('dashboard')->with([
+            'sections' => json_encode($this->getSections()),
+            'projects' => json_encode(self::getProjects()),
+        ]);
     }
 
     public function addSection(Request $request)
@@ -51,6 +59,11 @@ class WebsiteController extends Controller
         $project = new Project;
         $project->fill($data);
         return response()->json($project->save());
+    }
+
+    public function getProject($id) 
+    {
+        return Project::find($id);
     }
 
     public function getAllSectionsWithProjects()
