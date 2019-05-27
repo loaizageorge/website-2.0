@@ -6,7 +6,7 @@ function Hero() {
       <div className="hero-container">
         <div className="hero-text-box">
           <h1 className="header">George Loaiza</h1>
-          <h2 className="subheader">Front End Developer</h2>
+          <h2 className="subheader">Full Stack Developer</h2>
           <a className="btn-round btn-round-ghost js--scroll-to-gallery" href="#">
             Check out my work
           </a>

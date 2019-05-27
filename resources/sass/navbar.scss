@@ -6,6 +6,7 @@ nav {
   justify-content: space-between;
   padding: 15px 0;
   background-color: rgba(46, 42, 42, 1.0);
+  text-align: center;
 
   div, li {
     cursor: pointer;
@@ -37,6 +38,7 @@ nav {
   
   ul {
     display: flex;  
+    justify-content: center;
     margin: 0;
     padding: 0;
     list-style: none;
