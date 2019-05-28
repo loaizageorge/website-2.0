@@ -38,6 +38,14 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function loadProjectEdit() 
+    {
+        return view('project')->with([
+            'sections' => json_encode($this->getSections()),
+            'projects' => json_encode(self::getProjects()),
+        ]);
+    }
+
     public function addSection(Request $request)
     {
         $section = new Section;
@@ -64,6 +72,14 @@ class WebsiteController extends Controller
     public function getProject($id) 
     {
         return Project::find($id);
+    }
+
+    public function editProject(Request $request, $id)
+    {
+        $input = $request->all();
+        $project = self::getProject($id);
+        $project->fill($input);
+        return response()->json($project->save());
     }
 
     public function getAllSectionsWithProjects()

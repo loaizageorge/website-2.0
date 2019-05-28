@@ -13,4 +13,5 @@ use App\Http\Controllers\WebsiteController;
 
 Route::get('/', 'WebsiteController@index');
 Route::get('/dashboard', 'WebsiteController@loadDashboard');
+Route::get('/dashboard/project', 'WebsiteController@loadProjectEdit');
 

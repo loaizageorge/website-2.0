@@ -14,4 +14,5 @@ require('./bootstrap');
  */
 require ('semantic-ui/dist/semantic.min.css');
 require('./components/Website');
-require('./components/Dashboard/Dashboard');
+
+require('./components/Dashboard/ProjectForm');

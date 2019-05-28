@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectForm from './ProjectForm'
 import {request} from '../../utility/requests.js';
+import axios from 'axios';
 import { Container, Label, Input } from 'semantic-ui-react';
 
 function handleSubmit(event, route) {
@@ -9,11 +10,16 @@ function handleSubmit(event, route) {
 }
 
 function handleProjectChange(e, callback) {
-  let state = {
-    [e.target.name]: e.target.value,
-    view: 'project'
-  };
-  callback(state);
+  const projectID = e.target.value;
+  axios.get(`api/projects/${projectID}`)
+    .then(res => {
+      let project = res.data;
+      callback({ 
+        project: project,
+        section: null,
+      })
+    });
+  //callback(state);
 }
 
 class Dashboard extends React.Component {
@@ -50,7 +56,7 @@ class Dashboard extends React.Component {
         show = <EditSection/>;
         break;
       case 'project':
-        show = <ProjectForm id={this.state.project}/>;
+        show = <ProjectForm project={this.state.project}/>;
         break;  
       default: <AddProject/>;
    }
