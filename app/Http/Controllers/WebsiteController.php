@@ -79,7 +79,13 @@ class WebsiteController extends Controller
         $input = $request->all();
         $project = self::getProject($id);
         $project->fill($input);
-        return response()->json($project->save());
+        $success = $project->save();
+        return response()->json([
+            'success' => $success,
+            'message' => $success 
+                ? 'Successfully updated!'
+                : 'Failed to update :('
+        ]);
     }
 
     public function getAllSectionsWithProjects()

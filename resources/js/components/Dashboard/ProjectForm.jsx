@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Message from '../Message';
 
 class ProjectForm extends React.Component {
     constructor(props) {
@@ -15,6 +16,8 @@ class ProjectForm extends React.Component {
           image: '',
           source: '',
           section: 2,
+          inputKey: '',
+          message: '',
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +41,12 @@ class ProjectForm extends React.Component {
       let projectID = this.state.id;
       let api = '/api/projects' + (projectID ? `/${projectID}`: '' );
       axios.post(api, formData)
-        .then(response => console.log(response));
+        .then(response => {
+          this.setState({
+            message: response.data.message,
+            updated: response.data.success,
+          });
+        });
     }
 
     handleFormReset() {
@@ -52,6 +60,9 @@ class ProjectForm extends React.Component {
         image: '',
         source: '',
         section: '',
+        inputKey: Date.now(), // Force the input field to rerender
+        message: '',
+        updated: false,
       });
     }
 
@@ -74,6 +85,8 @@ class ProjectForm extends React.Component {
             image: project.image || '',
             source: project.source || '',
             section: project.section_id || '',
+            inputKey: Date.now(),
+            message: '',
           });
         });
     }
@@ -84,6 +97,9 @@ class ProjectForm extends React.Component {
         );
         return (
           <>
+          <>
+            <Message message={this.state.message} updated={this.state.updated}/>
+          </>
           <>
             <ProjectDropDown callback={this.handleProjectChange} />
           </>
@@ -127,7 +143,7 @@ class ProjectForm extends React.Component {
               ? (<img src={`../../../images/project_thumbnails/${this.state.image}`}/>)
               : ('')
           }
-          <input type="file" name="image" />
+          <input type="file" name="image" key={this.state.inputKey}/>
         </div>
         <div className="field">
           <label>Belongs to</label>
