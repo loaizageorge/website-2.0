@@ -13,11 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 Route::post('add-section', 'WebsiteController@addSection');
-Route::post('add-project', 'WebsiteController@addProject');
 Route::post('send-message', 'WebsiteController@sendMessage');
-Route::get('test', 'WebsiteController@getProjects');
-Route::get('projects/{id}', 'WebsiteController@getProject');
-Route::post('projects/{id}', 'WebsiteController@editProject');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'projects'], function(){
+    Route::post('/', 'ProjectController@create');
+    Route::get('/{id}', 'ProjectController@get');
+    Route::post('/{id}', 'ProjectController@update');
 });

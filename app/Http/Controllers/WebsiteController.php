@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProjectController;
 use DB;
 use Input;
 use App\Models\Section;
@@ -13,6 +14,7 @@ use App\Models\SectionProject;
 
 class WebsiteController extends Controller
 {
+
     public function index() 
     {
         $data = self::getAllSectionsWithProjects();
@@ -25,16 +27,13 @@ class WebsiteController extends Controller
         return $sections;
     }
 
-    protected function getProjects()
-    {
-        return Project::orderBy('name')->get(); 
-    }
+   
 
     public function loadDashboard() 
     {
         return view('dashboard')->with([
             'sections' => json_encode($this->getSections()),
-            'projects' => json_encode(self::getProjects()),
+            'projects' => json_encode(ProjectController::getAll()),
         ]);
     }
 
@@ -42,7 +41,7 @@ class WebsiteController extends Controller
     {
         return view('project')->with([
             'sections' => json_encode($this->getSections()),
-            'projects' => json_encode(self::getProjects()),
+            'projects' => json_encode(ProjectController::getAll()),
         ]);
     }
 
@@ -53,39 +52,6 @@ class WebsiteController extends Controller
         $section->order = $request->order;
 
         return response()->json($section->save());
-    }
-
-    public function addProject(Request $request)
-    {
-        $file = $request->file('image');
-        $fileName = $file->getClientOriginalName();
-        $file->move('images/project_thumbnails', $fileName);
-
-        $data = $request->all();
-        $data['image'] = $fileName;
-        $data['order'] = (int)$data['order'];
-        $project = new Project;
-        $project->fill($data);
-        return response()->json($project->save());
-    }
-
-    public function getProject($id) 
-    {
-        return Project::find($id);
-    }
-
-    public function editProject(Request $request, $id)
-    {
-        $input = $request->all();
-        $project = self::getProject($id);
-        $project->fill($input);
-        $success = $project->save();
-        return response()->json([
-            'success' => $success,
-            'message' => $success 
-                ? 'Successfully updated!'
-                : 'Failed to update :('
-        ]);
     }
 
     public function getAllSectionsWithProjects()
@@ -120,7 +86,7 @@ class WebsiteController extends Controller
         }
 
         // Prepare the email
-        $recipient = "loaizageorge@gmail.com";
+        $recipient = 'loaizageorge@gmail.com';
         $subject = "New contact from $name";
         $email_content = "Name: $name\n";
         $email_content .= "Email: $email\n\n";

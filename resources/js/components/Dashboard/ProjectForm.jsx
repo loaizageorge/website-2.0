@@ -11,11 +11,11 @@ class ProjectForm extends React.Component {
           name: '',
           order: 1,
           demo: '',
-          demoText: '',
+          demo_text: '',
           description: '',
           image: '',
           source: '',
-          section: 2,
+          section_id: 2,
           inputKey: '',
           message: '',
       }
@@ -30,6 +30,7 @@ class ProjectForm extends React.Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
+
         this.setState({
             [name] : value,
         });
@@ -55,11 +56,11 @@ class ProjectForm extends React.Component {
         name: '',
         order: 1,
         demo: '',
-        demoText: '',
+        demo_text: '',
         description: '',
         image: '',
         source: '',
-        section: '',
+        section_id: '',
         inputKey: Date.now(), // Force the input field to rerender
         message: '',
         updated: false,
@@ -80,11 +81,11 @@ class ProjectForm extends React.Component {
             name: project.name || '',
             order: project.order || '',
             demo: project.demo || '',
-            demoText: project.demo_text || '',
+            demo_text: project.demo_text || '',
             description: project.description || '',
             image: project.image || '',
             source: project.source || '',
-            section: project.section_id || '',
+            section_id: project.section_id || '',
             inputKey: Date.now(),
             message: '',
           });
@@ -93,7 +94,7 @@ class ProjectForm extends React.Component {
 
     render() {
         let optionItems = sections.map((section) =>
-                <option key={section.name}>{section.name}</option>
+                <option value={section.id} key={section.name}>{section.name}</option>
         );
         return (
           <>
@@ -147,7 +148,7 @@ class ProjectForm extends React.Component {
         </div>
         <div className="field">
           <label>Belongs to</label>
-          <select name="section" onChange={(event) => this.handleInputChange(event)}>
+          <select name="section_id" onChange={(event) => this.handleInputChange(event)}>
             {optionItems}
             </select>
         </div>
