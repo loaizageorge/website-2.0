@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'projects'], function(){
+Route::group(['prefix' => 'sections'], function() {
+    Route::post('/', 'SectionController@create');
+});
+
+Route::group(['prefix' => 'projects'], function() {
     Route::post('/', 'ProjectController@create');
     Route::get('/{id}', 'ProjectController@get');
     Route::post('/{id}', 'ProjectController@update');

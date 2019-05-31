@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ProjectController;
 use DB;
 use Input;
@@ -21,37 +22,20 @@ class WebsiteController extends Controller
         return view('website')->with('sections', json_encode($data));
     }
 
-    protected function getSections() 
-    {
-        $sections = Section::all();
-        return $sections;
-    }
-
-   
-
     public function loadDashboard() 
     {
         return view('dashboard')->with([
-            'sections' => json_encode($this->getSections()),
+            'sections' => json_encode(SectionController::getAll()),
             'projects' => json_encode(ProjectController::getAll()),
         ]);
     }
 
-    public function loadProjectEdit() 
+    public function loadProjectDashboard() 
     {
         return view('project')->with([
-            'sections' => json_encode($this->getSections()),
+            'sections' => json_encode(SectionController::getAll()),
             'projects' => json_encode(ProjectController::getAll()),
         ]);
-    }
-
-    public function addSection(Request $request)
-    {
-        $section = new Section;
-        $section->name = $request->name;
-        $section->order = $request->order;
-
-        return response()->json($section->save());
     }
 
     public function getAllSectionsWithProjects()

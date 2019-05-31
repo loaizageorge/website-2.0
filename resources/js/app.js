@@ -16,3 +16,4 @@ require ('semantic-ui/dist/semantic.min.css');
 require('./components/Website');
 
 require('./components/Dashboard/ProjectForm');
+require('./components/Dashboard/SectionForm');
