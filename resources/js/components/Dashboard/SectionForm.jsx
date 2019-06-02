@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SelectDropDown from '../SelectDropDown';
+import Message from '../Message';
 
 class SectionForm extends React.Component {
     constructor(props) {
@@ -9,11 +10,15 @@ class SectionForm extends React.Component {
             id: '',
             name: '',
             order: 1,
+
+            updated: false,
+            message: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSectionChange = this.handleSectionChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
 
@@ -27,13 +32,35 @@ class SectionForm extends React.Component {
         });
     }
 
+    handleDelete(e) {
+        const sectionID = this.state.id;
+        axios.get(`/api/sections/${sectionID}/delete`);
+    }
+
+    handleFormReset() {
+        this.setState({
+            id: '',
+            name: '',
+            message: '',
+            updating: false
+        });
+    }
+
     handleSectionChange(event) {
         var sectionID = event.target.value;
         if (!sectionID) {
-            //this.handleFormReset();
+            this.handleFormReset();
             return;
         }
-        console.log(sectionID);
+        axios.get(`api/sections/${sectionID}`)
+            .then(response => {
+                let section = response.data;
+                this.setState({
+                    id: section.id,
+                    name: section.name,
+                    order: section.order
+                });
+            })
     }
 
     handleSubmit(event) {
@@ -56,8 +83,15 @@ class SectionForm extends React.Component {
         let sectionOptions = sections.map((section) =>
             <option value={section.id} key={section.name}>{section.name}</option>
         );
+        sectionOptions.unshift(<option value="" key="">Add section</option>)
+
+        let deleteButton = this.state.id
+            ? <button type="button" onClick={this.handleDelete}>Delete</button>
+            : '';
+
         return (
             <>
+                <Message message={this.state.message} updated={this.state.updated}/>
                 <>
                     <SelectDropDown name="section_id" handleOnChange={this.handleSectionChange} options={sectionOptions}/>
                 </>
@@ -74,6 +108,8 @@ class SectionForm extends React.Component {
                             <label>Order</label>
                             <input value = {this.state.order} onChange={(event) => this.handleInputChange(event)} type="number" name="order" />
                         </div>
+                        <input type="submit" value="Submit" />
+                        {deleteButton}
                     </form>
                 </>
             </>

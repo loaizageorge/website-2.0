@@ -23,9 +23,35 @@ class SectionController extends Controller
         return response()->json($section->save());
     }
 
+    public static function update(Request $request, $id)
+    {
+    $input = $request->all();
+        $section = self::get($id);
+        $section->fill($input);
+        $success = $section->save();
+        return response()->json([
+            'success' => $success,
+            'message' => $success 
+                ? 'Successfully updated!'
+                : 'Failed to update :('
+        ]);
+
+    }
+
+    public static function get($id)
+    {
+        return Section::find($id);
+    }
+
     public static function all()
     {
         return Section::all();
+    }
+
+    public static function delete($id)
+    {
+        $section = Section::find($id);
+        $deleted = $section->delete();
     }
 
     protected function loadDashboard()
