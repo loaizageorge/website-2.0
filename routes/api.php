@@ -30,4 +30,5 @@ Route::group(['prefix' => 'projects'], function() {
     Route::post('/', 'ProjectController@create');
     Route::get('/{id}', 'ProjectController@get');
     Route::post('/{id}', 'ProjectController@update');
+    Route::get('/{id}/delete', 'ProjectController@delete');
 });

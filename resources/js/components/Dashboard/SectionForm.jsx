@@ -34,7 +34,14 @@ class SectionForm extends React.Component {
 
     handleDelete(e) {
         const sectionID = this.state.id;
-        axios.get(`/api/sections/${sectionID}/delete`);
+        axios.get(`/api/sections/${sectionID}/delete`)
+            .then(response => {
+                let deleted = response.data;
+                this.setState({
+                    message:deleted.message,
+                    updated: deleted.success
+                });
+            });
     }
 
     handleFormReset() {
@@ -52,13 +59,14 @@ class SectionForm extends React.Component {
             this.handleFormReset();
             return;
         }
-        axios.get(`api/sections/${sectionID}`)
+        axios.get(`/api/sections/${sectionID}`)
             .then(response => {
                 let section = response.data;
                 this.setState({
                     id: section.id,
                     name: section.name,
-                    order: section.order
+                    order: section.order,
+                    message: '',
                 });
             })
     }

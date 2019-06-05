@@ -6,49 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ProjectController;
-use DB;
-use Input;
-use App\Models\Section;
-use App\Models\Project;
-use App\Models\SectionProject;
-
 
 class WebsiteController extends Controller
 {
 
-    public function index() 
+    public function loadSectionDashboard() 
     {
-        $data = self::getAllSectionsWithProjects();
-        return view('website')->with('sections', json_encode($data));
-    }
-
-    public function loadDashboard() 
-    {
-        return view('dashboard')->with([
-            'sections' => json_encode(SectionController::getAll()),
-            'projects' => json_encode(ProjectController::getAll()),
+        return view('sections')->with([
+            'sections' => json_encode(SectionController::all()),
+            'projects' => json_encode(ProjectController::all()),
         ]);
     }
 
     public function loadProjectDashboard() 
     {
         return view('project')->with([
-            'sections' => json_encode(SectionController::getAll()),
-            'projects' => json_encode(ProjectController::getAll()),
+            'sections' => json_encode(SectionController::all()),
+            'projects' => json_encode(ProjectController::all()),
         ]);
-    }
-
-    public function getAllSectionsWithProjects()
-    {
-        return Section::with('projects')->get();
-    }
-
-    public function getProjectsInSection($section_id)
-    {
-        // get all the projects in a section
-        $section = new Section;
-        $projects = $section::find($section_id)->projects;
-        return $projects;
     }
 
     public function sendMessage(Request $request)

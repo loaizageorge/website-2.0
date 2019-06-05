@@ -52,6 +52,12 @@ class SectionController extends Controller
     {
         $section = Section::find($id);
         $deleted = $section->delete();
+        return response()->json([
+            'success' => $deleted,
+            'message' => $deleted 
+                ? 'Successfully deleted!'
+                : 'Failed to delete :('
+        ]);
     }
 
     protected function loadDashboard()

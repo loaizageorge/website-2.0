@@ -28,7 +28,7 @@ class ProjectController extends Controller
         return Project::find($id);
     }
 
-    public static function getAll($order='name')
+    public static function all($order='name')
     {
         return Project::orderBy($order)->get(); 
     }
@@ -44,6 +44,18 @@ class ProjectController extends Controller
             'message' => $success 
                 ? 'Successfully updated!'
                 : 'Failed to update :('
+        ]);
+    }
+
+    public static function delete($id)
+    {
+        $project = Project::find($id);
+        $deleted = $project->delete();
+        return response()->json([
+            'success' => $deleted,
+            'message' => $deleted 
+                ? 'Successfully deleted!'
+                : 'Failed to delete :('
         ]);
     }
 }

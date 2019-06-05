@@ -24,6 +24,7 @@ class ProjectForm extends React.Component {
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleProjectChange = this.handleProjectChange.bind(this);
       this.handleFormReset = this.handleFormReset.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleInputChange(e) {
@@ -49,6 +50,18 @@ class ProjectForm extends React.Component {
           });
         });
     }
+
+    handleDelete(e) {
+      const projectID = this.state.id;
+      axios.get(`/api/projects/${projectID}/delete`)
+          .then(response => {
+              let deleted = response.data;
+              this.setState({
+                  message:deleted.message,
+                  updated: deleted.success
+              });
+          });
+  }
 
     handleFormReset() {
       this.setState({
@@ -94,8 +107,12 @@ class ProjectForm extends React.Component {
 
     render() {
         let optionItems = sections.map((section) =>
-                <option value={section.id} key={section.name}>{section.name}</option>
+          <option value={section.id} key={section.name}>{section.name}</option>
         );
+
+        let deleteButton = this.state.id
+          ? <button type="button" onClick={this.handleDelete}>Delete</button>
+          : '';
         return (
           <>
           <>
@@ -154,6 +171,7 @@ class ProjectForm extends React.Component {
         </div>
 
         <input type="submit" value="Submit" />
+        {deleteButton}
       </form>
       </>
       </>

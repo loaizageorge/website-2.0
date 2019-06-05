@@ -5,7 +5,7 @@ import Hero from './Hero';
 import Portfolio from './Portfolio';
 import About from './About';
 import Contact from './Contact';
-
+import Footer from './Footer';
 
 function Website() {
   return (
@@ -15,7 +15,7 @@ function Website() {
         <Hero />
         <Portfolio />
         <Contact />
-
+        <Footer />
       </>
     </div>
   );

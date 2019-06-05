@@ -11,18 +11,13 @@ use App\Http\Controllers\WebsiteController;
 |
 */
 
-Route::get('/', 'WebsiteController@index');
-
 Route::group([
         'prefix' => 'dashboard', 
         'middleware' => 'auth'
     ], function() {
-        //Route::get('/dashboard', 'WebsiteController@loadDashboard');
-        Route::get('project', 'WebsiteController@loadProjectDashboard');
-        Route::get('sections', 'SectionController@loadDashboard');
+        Route::get('projects', 'WebsiteController@loadProjectDashboard');
+        Route::get('sections', 'WebsiteController@loadSectionDashboard');
     });
-
-
 
 Auth::routes();
 
