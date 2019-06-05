@@ -9,6 +9,10 @@ use App\Http\Controllers\ProjectController;
 
 class WebsiteController extends Controller
 {
+    public function loadWebsite()
+    {
+        return view('website')->with(['sections' => json_encode(SectionController::getProjects())]);
+    }
 
     public function loadSectionDashboard() 
     {

@@ -10,6 +10,7 @@ use App\Http\Controllers\WebsiteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('', 'WebsiteController@loadWebsite');
 
 Route::group([
         'prefix' => 'dashboard', 

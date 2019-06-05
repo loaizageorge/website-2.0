@@ -43,6 +43,11 @@ class SectionController extends Controller
         return Section::find($id);
     }
 
+    public static function getProjects()
+    {   
+        return Section::with('projects')->get();
+    }
+
     public static function all()
     {
         return Section::all();
