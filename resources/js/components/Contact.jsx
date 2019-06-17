@@ -1,35 +1,20 @@
 import React from 'react';
-import {request} from '../utility/requests.js';
+import axios from 'axios';
+
+function handleMessagePost(event) {
+  event.preventDefault();
+  const message =  new FormData(event.target);
+  axios.post('api/send-message', message);
+}
 
 function Contact() {
-  /**
-   <form>
-  <ul class="wrapper">
-    <li class="form-row">
-      <label for="name">Name</label>
-      <input type="text" id="name">
-    </li>
-    <li class="form-row">
-      <label for="townborn">Town you were born in</label>
-      <input type="text" id="townborn">
-    </li>
-    <li class="form-row">
-      <label for="email">Email Address</label>
-      <input type="email" id="email">
-    </li>
-    <li class="form-row">
-      <button type="submit">Submit</button>
-    </li>
-  </ul>
-</form>
-   */
   return (
     <section className="contact">
       
       <h2>Contact Me</h2>
       <div className="contact-container">
         
-          <form onSubmit={(event) => request(event, 'send-message')}>
+          <form onSubmit={(event) => handleMessagePost}>
             <h3>Using this form..</h3>
             <input type="hidden" name="_next" value="#contact" />
 

@@ -1,6 +1,5 @@
 export const request = (event, route, method='POST') => {
     event.preventDefault();
-    debugger;
     let request = {method: method};
     if (method === 'POST') {
       request.body = new FormData(event.target);

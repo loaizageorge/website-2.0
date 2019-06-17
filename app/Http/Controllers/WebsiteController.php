@@ -33,6 +33,7 @@ class WebsiteController extends Controller
     public function sendMessage(Request $request)
     {
         $input = $request->all();
+        dd($input);
         
          // Get the form fields, removes html tags and whitespace.
         $name = strip_tags(trim($input["name"]));
