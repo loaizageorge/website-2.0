@@ -1,20 +1,21 @@
 import React from 'react';
 import axios from 'axios';
-
-function handleMessagePost(event) {
-  event.preventDefault();
-  const message =  new FormData(event.target);
-  axios.post('api/send-message', message);
-}
+import Message from './Message';
 
 function Contact() {
+  function handleMessagePost(event) {
+    event.preventDefault();
+    const message =  new FormData(event.target);
+    axios.post('api/send-message', message);
+  }
+
   return (
     <section className="contact">
       
       <h2>Contact Me</h2>
       <div className="contact-container">
         
-          <form onSubmit={(event) => handleMessagePost}>
+          <form onSubmit={(event) => handleMessagePost(event)}>
             <h3>Using this form..</h3>
             <input type="hidden" name="_next" value="#contact" />
 
