@@ -1,5 +1,6 @@
 .contact {
-  grid-column: 2 / 12;
+  grid-column: 1 / 13;
+  background-color: #f4f4f4;
   h2 {
     text-align: center;
   }
@@ -7,11 +8,40 @@
 
 .contact-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
+
+  form {
+    grid-column: 2 / 4;
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 740px) {
+    form,
+    .contact__links {
+      grid-column: 1 / -1;
+    }
+    
+  }
+
 }
 
 .form-group {
-  display: flex;
+  justify-content: flex-end;
+  padding: .5em;
+
+  & > label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+  }
+
+  & > input,
+  & > textarea {
+    flex: 2;
+  }
+  
 }
 
 .control-label {
@@ -38,6 +68,7 @@
 }
 
 .contact__links {
+  grid-column-start: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +99,7 @@ a.btn-default i {
   display: block;
   float: left;
   position: absolute;
-  left: 12px;
+  left: 10px;
   top: 10px;
   font-size: 24px;
   color: #FFFFFF;
@@ -98,6 +129,11 @@ a.codepen-btn:after {
   background-color: #03829a;
 }
 
-.submit-container {
-  flex-direction: row-reverse;
+.send-button {
+  display: flex;
+  margin-left: auto;
+}
+
+.heart-icon {
+  color: red;
 }

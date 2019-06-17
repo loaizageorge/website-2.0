@@ -2,13 +2,35 @@ import React from 'react';
 import {request} from '../utility/requests.js';
 
 function Contact() {
+  /**
+   <form>
+  <ul class="wrapper">
+    <li class="form-row">
+      <label for="name">Name</label>
+      <input type="text" id="name">
+    </li>
+    <li class="form-row">
+      <label for="townborn">Town you were born in</label>
+      <input type="text" id="townborn">
+    </li>
+    <li class="form-row">
+      <label for="email">Email Address</label>
+      <input type="email" id="email">
+    </li>
+    <li class="form-row">
+      <button type="submit">Submit</button>
+    </li>
+  </ul>
+</form>
+   */
   return (
     <section className="contact">
+      
       <h2>Contact Me</h2>
       <div className="contact-container">
-        <div id="form" className="contact-input">
-          <h3>Using this form..</h3>
-          <form className="form-horizontal" onSubmit={(event) => request(event, 'send-message')}>
+        
+          <form onSubmit={(event) => request(event, 'send-message')}>
+            <h3>Using this form..</h3>
             <input type="hidden" name="_next" value="#contact" />
 
             <div className="form-group">
@@ -29,7 +51,6 @@ function Contact() {
               <input id="send-btn" className="btn btn-primary send-button" type="submit" value="Send" />
             </div>
           </form>
-        </div>
         <div className="contact__links">
           <h3>Or send me an email!</h3>
           <div className="buttons">
@@ -56,12 +77,8 @@ function Contact() {
               <i className="fab fa-github" aria-hidden="true" />
               <span> Github</span>
             </a>
-
+    </div>
           </div>
-
-
-        </div>
-
       </div>
     </section>
   );

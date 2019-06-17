@@ -20,6 +20,6 @@ Route::group([
         Route::get('sections', 'WebsiteController@loadSectionDashboard');
     });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav>
+    <nav className="nav">
       <div className="logo">
         <a href="http://georgeloaiza.com">
           <i className="fas fa-user-astronaut" />
