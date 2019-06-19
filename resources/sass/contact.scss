@@ -1,7 +1,8 @@
 .contact {
   grid-column: 1 / 13;
   background-color: #f4f4f4;
-  h2 {
+  h2, 
+  h3 {
     text-align: center;
   }
 }
@@ -12,10 +13,6 @@
 
   form {
     grid-column: 2 / 4;
-
-    h3 {
-      text-align: center;
-    }
   }
 
   @media screen and (max-width: 740px) {
@@ -132,6 +129,15 @@ a.codepen-btn:after {
 .send-button {
   display: flex;
   margin-left: auto;
+  background-color: #007edc;
+  color: white;
+  cursor: pointer;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  border-radius: 4px;
 }
 
 .heart-icon {
