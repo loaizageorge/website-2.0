@@ -1,42 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Message from './Message';
 
 function Contact() {
+  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+
   function handleMessagePost(event) {
     event.preventDefault();
-    const message =  new FormData(event.target);
-    axios.post('api/send-message', message);
+    const message = new FormData(event.target);
+    axios.post('api/send-message', message)
+      .then(response => {
+        let { success, message } = response.data;
+        setMessage(message);
+        setSuccess(success);
+        // Hide the message after 2 seconds
+        setTimeout(() => {
+          setMessage('');
+        }, 2000);
+      });
   }
 
   return (
     <section id="contact" className="contact">
-      
       <h2>Contact Me</h2>
+      <Message message={message} updated={success} />
       <div className="contact-container">
-        
-          <form onSubmit={(event) => handleMessagePost(event)}>
-            <h3>Using this form..</h3>
-            <input type="hidden" name="_next" value="#contact" />
 
-            <div className="form-group">
-              <label className="control-label" htmlFor="name">Name:</label>
-              <input type="text" className="form-control" placeholder="E.g. Johh Smith" name="name" required />
-            </div>
+        <form onSubmit={(event) => handleMessagePost(event)}>
+          <h3>Using this form..</h3>
+          <input type="hidden" name="_next" value="#contact" />
 
-            <div className="form-group">
-              <label className="control-label" htmlFor="email">Email:</label>
-              <input type="email" className="form-control" placeholder="example@email.com" name="email" required />
-            </div>
+          <div className="form-group">
+            <label className="control-label" htmlFor="name">Name:</label>
+            <input type="text" className="form-control" placeholder="E.g. Johh Smith" name="name" required />
+          </div>
 
-            <div className="form-group">
-              <label className="control-label" htmlFor="message">Message:</label>
-              <textarea className="form-control" id="message" rows="3" placeholder="Your message here" name="message" required />
-            </div>
-            <div className="form-group submit-container">
-              <input id="send-btn" className="btn btn-primary send-button" type="submit" value="Send" />
-            </div>
-          </form>
+          <div className="form-group">
+            <label className="control-label" htmlFor="email">Email:</label>
+            <input type="email" className="form-control" placeholder="example@email.com" name="email" required />
+          </div>
+
+          <div className="form-group">
+            <label className="control-label" htmlFor="message">Message:</label>
+            <textarea className="form-control" id="message" rows="3" placeholder="Your message here" name="message" required />
+          </div>
+          <div className="form-group submit-container">
+            <input id="send-btn" className="btn btn-primary send-button" type="submit" value="Send" />
+          </div>
+        </form>
+
         <div className="contact__links">
           <h3>Or send me an email!</h3>
           <div className="buttons">
@@ -63,9 +76,9 @@ function Contact() {
               <i className="fab fa-github" aria-hidden="true" />
               <span> Github</span>
             </a>
-    </div>
           </div>
-      </div>
+        </div>
+              </div>
     </section>
   );
 }
