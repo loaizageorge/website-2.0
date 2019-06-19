@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>The Kool Kid Korner</title>
+        <title>George Loaiza</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Fonts -->
@@ -18,6 +18,19 @@
         
       </script>
       <script src="{{ asset('js/app.js')}}"></script>
+      <script>
+        // Smooth scrolling
+        // Shout out to the boy joseph
+        // https://stackoverflow.com/questions/7717527/smooth-scrolling-when-clicking-an-anchor-link
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+            });
+          });
+        });
+      </script>
     </body>
 
 </html>

@@ -6,7 +6,7 @@ import Section from './Section';
 
 function Portfolio() {
   return (
-    <section className="portfolio">
+    <section id="projects" className="portfolio">
       {
         sections.map(section => (
           <Section
