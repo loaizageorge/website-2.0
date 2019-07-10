@@ -38,10 +38,10 @@ class WebsiteController extends Controller
         $name = strip_tags(trim($input["name"]));
         $name = str_replace(array("\r","\n"),array(" "," "),$name);
         $email = filter_var(trim($input["email"], FILTER_SANITIZE_EMAIL));
-        $message = trim($input["message"]);
+        $text = trim($input["message"]);
         
         // Check the data.
-        if (empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (empty($name) OR empty($text) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return response()->json([
                 'success' => false,
                 'message' => 'All fields must be filled out'
@@ -51,16 +51,24 @@ class WebsiteController extends Controller
         // Prepare the email
         $recipient = 'loaizageorge@gmail.com';
         $subject = "New contact from $name";
-        $email_content = "Name: $name\n";
-        $email_content .= "Email: $email\n\n";
-        $email_content .= "Message:\n$message\n";
-        $email_headers = "From: $name <$email>";
+	$data = [
+		'name' => $name,
+		'email' => $email,
+		'text' => $text
+	];
 
-        $sent = mail($recipient, $subject, $email_content, $email_headers);
+	//$sent = mail($recipient, $subject, $email_content, $email_headers);
+ \Mail::send('emails.contact', $data, function ($message)
+         {
+
+
+	            $message->to('loaizageorge@gmail.com');
+
+	        });	    
         
         return response()->json([
-            'success' => $sent,
-            'message' => $sent ? 'Your message has been sent!' : "Couldn't send your email :( Try again later?"
+            'success' => true,
+            'message' => 'Your message has been sent!'
         ]);
     }
 }
