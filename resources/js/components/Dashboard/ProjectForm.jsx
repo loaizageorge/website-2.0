@@ -141,7 +141,7 @@ class ProjectForm extends React.Component {
 
         <div className="field">
         <label>Demo Text</label>
-          <input value = {this.state.demoText} onChange={(event) => this.handleInputChange(event)} type="text" name="demo_text" />
+          <input value = {this.state.demo_text} onChange={(event) => this.handleInputChange(event)} type="text" name="demo_text" />
         </div>
 
         <div className="field">
