@@ -36,9 +36,18 @@ class ProjectController extends Controller
     public static function update(Request $request, $id)
     {
         $input = $request->all();
+
+        $file = $request->file('image');
         $project = self::get($id);
         $project->fill($input);
+	if ($file) {
+	  $fileName = $file->getClientOriginalName();
+          $file->move('images/project_thumbnails', $fileName);
+	  $project['image'] = $fileName;
+
+	}
         $success = $project->save();
+
         return response()->json([
             'success' => $success,
             'message' => $success 
